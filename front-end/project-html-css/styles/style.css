@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  opacity: 0.75;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  padding-left: 27px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.top-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 100%;
+}
+
+.top-menu-left {
+  margin: 7px 0 0 10px;
+}
+
+.top-menu-right {
+  margin: 7px 10px 0 0;
+}
+
+.bottom-menu-right {
+  margin-right: 30px;
+}
+
+.bottom-menu-left {
+  margin-left: 30px;
+}
+
+.top-menu-right, .bottom-menu-right {
+  float:right;
+}
+
+.top-menu-left, .bottom-menu-left {
+  float:left;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.search-form {
+  position: absolute;
+  top: 311px;
+}
+
+.bottom-menu {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  background: #f2f2f2;
+  border-top: 1px solid #e4e4e4;
+  line-height:40px;
+}
+
