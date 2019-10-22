@@ -17,6 +17,17 @@ a:hover {
   text-decoration: underline;
 }
 
+form {
+  width: 484px;
+  margin: 0 auto;
+}
+
+.search-page {
+  min-height: 550px;
+  height: 100%;
+  position: relative;
+}
+
 .top-menu {
   position: absolute;
   top: 10px;
@@ -32,14 +43,6 @@ a:hover {
   margin: 7px 10px 0 0;
 }
 
-.bottom-menu-right {
-  margin-right: 30px;
-}
-
-.bottom-menu-left {
-  margin-left: 30px;
-}
-
 .top-menu-right, .bottom-menu-right {
   float:right;
 }
@@ -52,17 +55,75 @@ a:hover {
   margin: 0 auto;
 }
 
+.main-content {
+  margin-bottom: 35px;
+}
+
+.google-logo {
+  margin-top: 89px;
+  height: 233px;
+}
+
+.google-image{
+  padding-top: 109px;
+  margin: 0 auto;
+  width: 272px;
+  display: block;
+}
+
 .search-form {
   position: absolute;
-  top: 311px;
+  top: 231px;
+  width: 100%;
+}
+
+.search-form-top {
+  font-size: small;
+  height: 46px;
+  border: 1px solid #9999;
+  border-radius: 28px;
+  position: relative;
+}
+
+.search-box {
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  border: none;
+  width: 90%;
+  margin: 0 5%;
+  line-height: 36px;
+}
+
+.search-form-bottom {
+  position: relative;
+  width: 100%;
+}
+
+.search-form-bottom-buttons {
+  position: relative;
+  width: 320px;
+}
+
+.search-button, .lucky-button {
+  width: 150px;
+  margin: 20px 4px;
 }
 
 .bottom-menu {
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   width: 100%;
   background: #f2f2f2;
   border-top: 1px solid #e4e4e4;
   line-height:40px;
+}
+
+.bottom-menu-right {
+  margin-right: 30px;
+}
+
+.bottom-menu-left {
+  margin-left: 30px;
 }
 
