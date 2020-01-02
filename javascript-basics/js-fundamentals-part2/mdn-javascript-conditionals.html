@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<!--
+copied this from
+https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/simple-else-if.html
+to play with the .querySelector method. they were using a string of select and
+p which would simply find the first bit of code that matched the text. I
+wanted to experiment and see how looking for id's or class names would work.
+and
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals
+to play with the example code they provided for example there.
+
+Really didn't want to make a separate style file, so it's just pasted into
+<style> and <script> tags lol.
+
+How do I reset the select value to default on page load?
+-->
+  <head>
+    <meta charset="utf-8">
+    <title>MDN condish exmpl Mathis</title>
+  </head>
+  <body>
+    <style>
+      .output * {
+        box-sizing: border-box;
+      }
+
+      .output ul {
+        padding-left: 0;
+      }
+
+      .output li {
+        display: block;
+        float: left;
+        width: 25%;
+        border: 2px solid white;
+        padding: 5px;
+        height: 40px;
+        background-color: #4A2DB6;
+        color: white;
+      }
+
+      html {
+        font-family: sans-serif;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      .a11y-label {
+        margin: 0;
+        text-align: right;
+        font-size: 0.7rem;
+        width: 98%;
+      }
+
+      body {
+        margin: 10px;
+        background: #f5f9fa;
+      }
+    </style>
+
+    <p>
+      These values do not reset, and they must change for the script to redraw
+      the calendar or set the theme, etc. etc.
+    </p>
+
+    <label for="weather">Select the weather type today: </label>
+    <select id="weather">
+      <option value="">--Make a choice--</option>
+      <option value="sunny">Sunny</option>
+      <option value="rainy">Rainy</option>
+      <option value="snowing">Snowing</option>
+      <option value="overcast">Overcast</option>
+    </select>
+
+    <p id="weather-text"></p>
+
+    <div class="output" style="height: 500px;overflow: auto;">
+      <label for="month">Select month: </label>
+      <select id="month">
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
+
+      <h1 id="monthChoice"></h1>
+
+      <ul id="calendarList"></ul>
+    </div>
+
+    <div class="themeOutput" id="themeDiv" style="height: 300px; background-color: white; color: black;">
+      <label for="theme">Select theme: </label>
+      <select id="theme">
+        <option value="white">White</option>
+        <option value="black">Black</option>
+        <option value="purple">Purple</option>
+        <option value="yellow">Yellow</option>
+        <option value="psychedelic">Psychedelic</option>
+      </select>
+
+      <h1 id="themeH1">This is my website</h1>
+    </div>
+
+    <script>
+      //this is for the weather example
+      const select = document.querySelector('#weather');
+      const para = document.querySelector('#weather-text');
+      let temperature = 29;
+      select.onchange = setWeather;
+      function setWeather() {
+        const choice = select.value;
+        if(choice === 'sunny') {
+          para.textContent = 'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+        } else if(choice === 'rainy') {
+          para.textContent = 'Rain is falling outside; take a rain coat and a brolly, and don\'t stay out for too long.';
+        } else if(choice === 'snowing') {
+          para.textContent = 'The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+        } else if(choice === 'overcast') {
+          para.textContent = 'It isn\'t raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.';
+        } else {
+          para.textContent = '';
+        }
+      }
+
+      //this is for the calendar example
+      const MonthSelect = document.querySelector('#month');
+      const list = document.querySelector('#calendarList');
+      const h1 = document.querySelector('#monthChoice');
+
+      MonthSelect.onchange = calendar;
+      function calendar() {
+        const choice = MonthSelect.value;
+
+        // ADD CONDITIONAL HERE
+        if(choice === 'February'){days = 28;}
+        else if(choice==='April' || choice==='June' || choice==='September' || choice==='November'){days = 30;}
+        else {days = 31;}
+
+        createCalendar(days, choice);
+      }
+
+      function createCalendar(days, choice) {
+        list.innerHTML = '';
+        h1.textContent = choice;
+        for (let i = 1; i <= days; i++) {
+          const listItem = document.createElement('li');
+          listItem.textContent = i;
+          list.appendChild(listItem);
+        }
+      }
+
+      createCalendar(31, 'January');
+
+      //this is for the theme changer section
+      const ThemeSelect = document.querySelector('#theme');
+      const html = document.querySelector('#themeDiv');
+
+      ThemeSelect.onchange = function() {
+        const themeChoice = ThemeSelect.value;
+
+        // ADD SWITCH STATEMENT
+        switch(themeChoice){
+          case 'white':
+            update('white', 'black');
+            break;
+          case 'black':
+            update('black', 'white');
+            break;
+          case 'purple':
+            update('purple', 'white');
+            break;
+          case 'yellow':
+            update('yellow', 'black');
+            break;
+          case 'psychedelic':
+            update('lime', 'purple');
+            break;
+        }
+      }
+      function update(bgColor, textColor) {
+        html.style.backgroundColor = bgColor;
+        html.style.color = textColor;
+      }
+
+    </script>
+  </body>
+</html>
