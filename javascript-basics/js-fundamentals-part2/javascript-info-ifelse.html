@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //prompt for and evaluate a string value.
+      'use strict';
+      let value = prompt('What is the "official" name of JavaScript?', '');
+
+      if (value == 'ECMAScript') {
+        alert('Right!');
+      } else {
+        alert("You don't know? ECMAScript!");
+      }
+
+      //prompt for and evaluate a number value.
+      let number = prompt('Enter a Number: ', 0);
+
+      if (number > 0) {
+        alert('1');
+      } else if (number < 0) {
+        alert('-1');
+      } else {
+        alert('0');
+      }
+
+      //rewrite the below if as a ternary using the '?'
+      //let result;
+      //
+      //if (a + b < 4) {
+      //  result = 'Below';
+      //} else {
+      //  result = 'Over';
+      //}
+
+      let a = 2;
+      let b = 4;
+      let result = (a + b < 4) ? 'Below': 'Over';
+      alert('Result = ' + result);
+
+      // rewrite an if..else with multiple ternary operators '?'
+      //let message;
+      //
+      //if (login == 'Employee') {
+      //  message = 'Hello';
+      //} else if (login == 'Director') {
+      //  message = 'Greetings';
+      //} else if (login == '') {
+      //  message = 'No login';
+      //} else {
+      //  message = '';
+      //}
+      let login = prompt('Enter a Login Value (Employee, Director, etc..)', '');
+      let message = (login == 'Employee') ? 'Hello' :
+        (login == 'Director') ? 'Greetings' :
+        (login == '') ? 'No login' :
+        '';
+      alert(login + message);
+
+    </script>
+  </body>
+</html>
