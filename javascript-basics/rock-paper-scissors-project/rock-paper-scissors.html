@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <style>
+      html, body {
+        height: 100%;
+      }
+      .center {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #rockPaperScissorsMenu {
+        text-align: center;
+        width: 700px;
+      }
+    </style>
+
+    <div class='center'>
+      <div id='rockPaperScissorsMenu'>
+        <p>Rock Paper Scissors: </p>
+        <button id='goPlayButton'>Play</button>
+        <p id='lastGameSummary'></p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      const playButton = document.querySelector('#goPlayButton');
+      const lastGameSummary = document.querySelector('#lastGameSummary');
+      playButton.onclick = goPlay;
+
+      function computerPlay(){
+        const numChoices = 3;
+        let choice =  Math.floor(Math.random() *numChoices);
+        let message = '';
+
+        switch(choice) {
+          case 0:
+            message = 'scissors';
+            break;
+          case 1:
+            message = 'rock';
+            break;
+          case 2:
+            message = 'paper';
+            break;
+          default:
+            message = 'Something went wrong! 1';
+        }
+        return message;
+      }
+
+      function playRound(playerChoice, computerChoice) {
+        let pc = playerChoice.toString().trim().toLowerCase();
+        let cc = computerChoice.toString().trim().toLowerCase();
+        let message = '';
+        let win = 'You Win! ' + pc + ' beats ' + cc + '. ';
+        let lose = 'You Lose! ' + cc + ' beats ' + pc + '. ';
+        let tie = 'Tie! You both chose ' + pc + '. ';
+
+        if (pc === 'rock') {
+          switch (cc) {
+            case 'scissors':
+              message = win;
+              break;
+            case 'paper':
+              message = lose;
+              break;
+            case 'rock':
+              message = tie;
+              break;
+            default:
+              message = 'Something went wrong! 2';
+            }
+          } else if (pc === 'scissors') {
+            switch (cc) {
+              case 'scissors':
+                message = tie;
+                break;
+              case 'paper':
+                message = win;
+                break;
+              case 'rock':
+                message = lose;
+                break;
+              default:
+                message = 'Something went wrong! 3';
+              }
+            }  else if (pc === 'paper') {
+            switch (cc) {
+              case 'scissors':
+                message = lose;
+                break;
+              case 'paper':
+                message = tie;
+                break;
+              case 'rock':
+                message = win;
+                break;
+              default:
+                message = 'Something went wrong! 4';
+              }
+            } else {
+              message = 'Something went wrong. Did you choose scissors, rock,'
+                        + ' or paper?'
+          }
+
+          return message;
+        }
+
+        function playerWin(roundResult) {
+          return roundResult.charAt(4).toLowerCase() == 'w';
+        }
+
+        function scoreReached(playerScore, compScore, bestOf) {
+          //if both scores smaller than bestOf the score is not reached.
+          return !(playerScore < bestOf && compScore < bestOf);
+        }
+
+        function rockPaperScissors(numRounds){
+          let nr = numRounds.toString().trim().toLowerCase();
+          let round = '';
+          let roundResult = '';
+          let roundSummary = '';
+          let promptMessage = '';
+          let playerChoice = '';
+          let playerScore = 0;
+          let compScore = 0;
+          let scoreMessage = ''
+          let bestOf = Math.ceil(nr / 2);
+          let gameOver = false;
+          let message = 'Best of ' + nr + '. 1st to ' + bestOf + ' wins!';
+
+            for (let i = 0 ; i < nr && !gameOver; i++) {
+              round = 'Round ' + (i + 1) + ': ';
+
+              if (i < 1) {
+                promptMessage = round + 'Please choose rock, paper, or '
+                                + 'scissors. ';
+              }else {
+                promptMessage = round + scoreMessage;
+              }
+
+              playerChoice = prompt(promptMessage, '');
+              roundResult = playRound(playerChoice, computerPlay());
+              playerWin(roundResult) ? playerScore++ : compScore++;
+              scoreMessage = 'player: ' + playerScore + ' and '
+                             + 'computer: ' + compScore + '.';
+              roundSummary = round + roundResult;
+              message += roundSummary;
+              gameOver = scoreReached(playerScore, compScore, bestOf);
+            }
+
+          return message + scoreMessage;
+        }
+
+        function goPlay () {
+
+          let message = ''
+          let promptMessage = 'How many Rounds of Rock Paper Scissors?'
+          let nr = prompt(promptMessage, '').toString().trim().toLowerCase();
+          let regex = /^[0-9]+$/; //regex pattern for integers
+          if (!regex.exec(nr)) {
+            //only runs if input is not an integer
+            message = 'Please enter a number for the rounds.';
+            lastGameSummary.textContent = message;
+            return;
+          }
+          let bestOf = Math.ceil(nr / 2);
+
+          let confirmMessage = 'You want a best of ' + nr + ' rounds? That'
+                          + ' means whoever wins ' + bestOf + ' first is the '
+                          + 'victor. Ties go to the computer. Enter '
+                          + '"Yes" or "No" ';
+          let correct = prompt(confirmMessage, '').toLowerCase().trim();
+
+          if (correct.charAt(0) === 'y') {
+            message = rockPaperScissors(nr);
+          } else if (correct.charAt(0) == 'n') {
+            message = 'Oh okay then.';
+          } else {
+            message = 'Make sure you enter "Yes" or "No" ';
+          }
+          lastGameSummary.textContent = message;
+          return;
+        }
+    </script>
+  </body>
+</html>
