@@ -1,0 +1,30 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>odin js3 practice</title>
+  </head>
+  <body>
+
+    <script>
+    //these functions are for the practice at the end of odin project's js fundamentals
+    //part 3 lesson.
+      function add7 (num) {
+        return num + 7
+      }
+      function multiply (num1, num2) {
+        return num1 * num2
+      }
+      function capitalize (str) {
+        let returnStr = str.toString().trim().toLowerCase();
+        returnStr = returnStr.replace(returnStr.charAt(0), returnStr.charAt(0).toUpperCase());
+        return returnStr;
+
+      }
+      function lastLetter (str) {
+        let returnStr = str.toString().trim();
+        return returnStr.charAt(returnStr.length - 1);
+      }
+    </script>
+  </body>
+</html>
