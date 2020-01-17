@@ -135,7 +135,7 @@
           let scoreMessage = ''
           let bestOf = Math.ceil(nr / 2);
           let gameOver = false;
-          let message = 'Best of ' + nr + '. 1st to ' + bestOf + ' wins!';
+          let message = 'Best of ' + nr + ', first to ' + bestOf + ' wins!';
 
             for (let i = 0 ; i < nr && !gameOver; i++) {
               round = 'Round ' + (i + 1) + ': ';
@@ -160,20 +160,27 @@
           return message + scoreMessage;
         }
 
+        function isNumber(valueIn){
+          let regex = /^[0-9]+$/; //regex pattern for integers
+          if (!regex.exec(valueIn)) {
+            return false;
+          } else {
+              return true;
+          }
+        }
+
         function goPlay () {
 
           let message = ''
           let promptMessage = 'How many Rounds of Rock Paper Scissors?'
           let nr = prompt(promptMessage, '').toString().trim().toLowerCase();
-          let regex = /^[0-9]+$/; //regex pattern for integers
-          if (!regex.exec(nr)) {
-            //only runs if input is not an integer
-            message = 'Please enter a number for the rounds.';
+          if (!isNumber(nr)) {
+            message = 'Please enter a whole number for the rounds.';
             lastGameSummary.textContent = message;
             return;
           }
-          let bestOf = Math.ceil(nr / 2);
 
+          let bestOf = Math.ceil(nr / 2);
           let confirmMessage = 'You want a best of ' + nr + ' rounds? That'
                           + ' means whoever wins ' + bestOf + ' first is the '
                           + 'victor. Ties go to the computer. Enter '

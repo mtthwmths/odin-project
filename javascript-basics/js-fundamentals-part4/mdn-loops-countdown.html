@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    function isNumber(valueIn){
+      let regex = /^[0-9]+$/; //regex pattern for integers
+      if (!regex.exec(valueIn)) {
+        return false;
+      } else {
+          return true;
+      }
+    }
+
+    function patrick(countdownStart) {
+        let message = '';
+
+        if (!isNumber(countdownStart)) {
+          message = 'Please use a number';
+          return;
+        }
+
+        for (let i = 0; i < countdownStart) {
+
+        }
+      }
+    </script>
+  </body>
+</html>
