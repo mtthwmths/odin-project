@@ -2,10 +2,93 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>MDN Loops Countdown</title>
   </head>
   <body>
+    <style>
+
+      html, body {
+        height: 100%;
+      }
+
+      .center {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+      }
+
+      .centertext{
+        text-align: center;
+        width: 400px;
+        background: lightgray;
+      }
+
+      .countdownHeader {
+        background: lightblue;
+      }
+
+      .countdownOutput {
+        background: lightyellow;
+      }
+
+      .vertical > * {
+        flex: 100%;
+      }
+
+      #countdownOutput {
+        display: none;
+      }
+    </style>
+
+    <div class="center">
+
+      <div class="vertical">
+
+        <div id="countdownMenu" class="centertext">
+          <form action="" method="get" class="countdownForm">
+            <div class="countdownHeader centertext">
+              <h1> Countdown Example </h1>
+            </div>
+
+            <div class="countdownForm">
+              <label for="countdownNumber">Countdown from? </label>
+              <input type="text" name="countdownNumber" id="countdownNumber" required>
+            </div>
+
+            <div class="countdownForm">
+              <button id="countdownStart">Start!</button>
+            </div>
+
+          </form>
+        </div>
+
+        <div id="countdownOutput" class="countdownOutput centertext">
+          <h2>Initiate Countdown</h2>
+          <ul id="countdownList">
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
     <script type="text/javascript">
+
+    //set some constants for the list to be built during the countdown
+    const countdownList = document.querySelector("#countdownList");
+    const countdownStart = document.querySelector("#countdownStart");
+    const countdownOutput = document.querySelector("#countdownOutput");
+    const countdownNumber = document.querySelector("#countdownNumber");
+
+    //set the ul to empty on page load.
+    countdownList.innerHTML = "";
+
+    //when the button is clicked, start the countdown and let it handle the
+    //input checking and stuff like that
+    countdownStart.onclick = () => countdown(countdownNumber.value)
+
+    //get the function for checking whether an object is an integer
     function isNumber(valueIn){
       let regex = /^[0-9]+$/; //regex pattern for integers
       if (!regex.exec(valueIn)) {
@@ -15,16 +98,28 @@
       }
     }
 
-    function patrick(countdownStart) {
-        let message = '';
+    function addCountdownList(numberIn) {
+      let currentCount = numberIn;
+      const listItem = document.createElement('li');
+      listItem.textContent = currentCount;
+      countdownList.appendChild(listItem);
+    }
 
+    function countdown(countdownStart) {
+        const countdownNumber = countdownStart.toString().trim().toLowerCase();
+        //if not a number return an error message
         if (!isNumber(countdownStart)) {
-          message = 'Please use a number';
+          alert("Please use a number");
           return;
         }
 
-        for (let i = 0; i < countdownStart) {
+        //now that we know it's a number, set the countdown area visible.
+        countdownOutput.style.visible;
 
+        //countdown from "countdownStart" to 0 and in each iteration of the loop
+        //print each number in a <li> and then wait 1 second.
+        for (let i = 0; i < countdownNumber; i++) {
+          setTimeout(addCountdownList(countdownNumber - i), 1000);
         }
       }
     </script>
