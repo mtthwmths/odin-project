@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>MDN Loops Countdown</title>
-  </head>
-  <body>
+
     <style>
 
       html, body {
@@ -12,7 +11,7 @@
       }
 
       .center {
-        height: 100%;
+        height: inherit;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -37,10 +36,10 @@
         flex: 100%;
       }
 
-      #countdownOutput {
-        display: none;
-      }
     </style>
+
+  </head>
+  <body>
 
     <div class="center">
 
@@ -54,11 +53,11 @@
 
             <div class="countdownForm">
               <label for="countdownNumber">Countdown from? </label>
-              <input type="text" name="countdownNumber" id="countdownNumber" required>
+              <input type="tel" name="countdownNumber" id="countdownNumber" required>
             </div>
 
             <div class="countdownForm">
-              <button id="countdownStart">Start!</button>
+              <input type="button" id="countdownStart" value="Start!">
             </div>
 
           </form>
@@ -81,12 +80,12 @@
     const countdownOutput = document.querySelector("#countdownOutput");
     const countdownNumber = document.querySelector("#countdownNumber");
 
-    //set the ul to empty on page load.
-    countdownList.innerHTML = "";
-
-    //when the button is clicked, start the countdown and let it handle the
-    //input checking and stuff like that
-    countdownStart.onclick = () => countdown(countdownNumber.value)
+    //when the button is clicked, start and show the countdown
+    countdownStart.onclick = () => {
+      countdownList.innerHTML = "";
+      countdownOutput.style.display = "";
+      countdown(countdownNumber.value);
+    }
 
     //get the function for checking whether an object is an integer
     function isNumber(valueIn){
@@ -109,18 +108,17 @@
         const countdownNumber = countdownStart.toString().trim().toLowerCase();
         //if not a number return an error message
         if (!isNumber(countdownStart)) {
-          alert("Please use a number");
+          alert("Please use a positive whole number");
           return;
         }
 
-        //now that we know it's a number, set the countdown area visible.
-        countdownOutput.style.visible;
-
         //countdown from "countdownStart" to 0 and in each iteration of the loop
         //print each number in a <li> and then wait 1 second.
-        for (let i = 0; i < countdownNumber; i++) {
-          setTimeout(addCountdownList(countdownNumber - i), 1000);
+        for (let i = 0; i <= countdownNumber; i++) {
+          addCountdownList(countdownNumber - i);
         }
+
+        addCountdownList('BLASTOFF!')
       }
     </script>
   </body>
