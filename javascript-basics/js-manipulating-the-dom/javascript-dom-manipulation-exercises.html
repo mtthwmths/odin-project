@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Manipulating the DOM</title>
+  </head>
+  <body>
+    <h1>
+      Manipulating the DOM
+    </h1>
+    <div id="container"></div>
+
+    <!-- js in html button -->
+    <button onclick="alert('Hello Worsd')">Click Me</button>
+
+    <!-- setting onclick in js elsewhere -->
+    <button id="btn">Click Me Also</button>
+
+    <!-- using an event listener -->
+    <button id="btn2">Click Me Too</button>
+
+    <button id="btn3">Click Me Next</button>
+
+    <button id="btn4">Click Me Sempai</button>
+
+    <br>
+
+    <div id="container2">
+      <button class="buttons" id="1">My Id is 1</button>
+      <button class="buttons" id="2">My Id is 2</button>
+      <button class="buttons" id="3">My Id is 3</button>
+    </div>
+  </body>
+
+  <script>
+
+    const container = document.querySelector("#container");
+
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.textContent = 'This is the glorious text-content!';
+
+    container.appendChild(content);
+
+    const redPP = document.createElement('p');
+    redPP.textContent = "Hey I'm Red!"
+    redPP.style.cssText = 'color:red;';
+    container.appendChild(redPP);
+
+    const blueH3 = document.createElement('h3');
+    blueH3.textContent = "I'm a blue h3!"
+    blueH3.style.cssText = 'color:blue;';
+    container.appendChild(blueH3);
+
+    const blackAndPinkDiv = document.createElement('div');
+    blackAndPinkDiv.style.cssText = 'border:solid;background-color:pink;';
+
+    const divH1 = document.createElement('div');
+    divH1.textContent = "I'm in a div";
+    blackAndPinkDiv.appendChild(divH1);
+
+    const divPP = document.createElement('p');
+    divPP.textContent = "ME TOO!";
+    blackAndPinkDiv.appendChild(divPP);
+
+    container.appendChild(blackAndPinkDiv);
+
+    const btn = document.querySelector("#btn");
+    btn.onclick = () => alert("Hello World");
+
+    const btn2 = document.querySelector("#btn2");
+    btn2.addEventListener('click', () => {
+      alert("Hello World!");
+    });
+
+    const btn3 = document.querySelector('#btn3');
+    btn3.addEventListener('click', function(e) {
+      console.log(e.target);
+      alert("logged something in the console.");
+    });
+
+    const btn4 = document.querySelector('#btn4');
+    btn4.addEventListener('click', function(e) {
+      e.target.style.background = 'blue';
+      alert("uwu! now I'm an awful blue button, baka!");
+    });
+
+    const buttons = document.querySelectorAll('.buttons');
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        alert("My Id Is " + button.id);
+      });
+    });
+
+  </script>
+</html>
