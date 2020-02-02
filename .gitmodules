@@ -1,0 +1,6 @@
+[submodule "javascript-basics/js-manipulating-the-dom/JavaScript30"]
+	path = javascript-basics/js-manipulating-the-dom/JavaScript30
+	url = git@github.com:mtthwmths/JavaScript30.git
+[submodule "javascript-basics/js-fundamentals-part4/javascript-exercises"]
+	path = javascript-basics/js-fundamentals-part4/javascript-exercises
+	url = git@github.com:mtthwmths/javascript-exercises.git
