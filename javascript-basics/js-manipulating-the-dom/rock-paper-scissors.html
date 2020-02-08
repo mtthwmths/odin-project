@@ -37,7 +37,7 @@
         </select>
         <button id='goPlayButton'>Play</button>
       </div>
-      <div id='container'></div>
+      <div id='gameContainer'></div>
     </div>
 
     <script type="text/javascript">
@@ -158,10 +158,16 @@
           scissorsButton.id = 'scissors';
 
           let roundLiInitial = document.createElement('li');
-          roundLiInitial.id = 'round';
+          roundLiInitial.id = round;
           roundLiInitial.appendChild(rockButton);
           roundLiInitial.appendChild(paperButton);
           roundLiInitial.appendChild(scissorsButton);
+
+          // testing how it looks
+          let gameContainer = document.querySelector('#gameContainer');
+          let gameList = document.createElement('ul');
+          gameList.id = 'gameList';
+          gameList.appendChild(roundLiInitial);
 
           return roundLiInitial;
 
@@ -184,7 +190,6 @@
           //   - this has been put in the roundEnd function.
           // each round and the final summary will be a new <li> in a <ul>
           let roundLi = '';
-          console.log(rockButton);
           let promptMessage = '';
           let playerChoice = '';
           let playerScore = 0;
@@ -197,6 +202,7 @@
 
             for (let i = 0 ; i < nr && !gameOver; i++) {
               round = 'Round ' + (i + 1) + ': ';
+              roundLi = roundStart(round);
 
               if (i < 1) {
                 promptMessage = round + 'Please choose rock, paper, or '
