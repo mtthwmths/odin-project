@@ -222,7 +222,7 @@ function goPlay () {
     if (correct.charAt(0) === 'y') {
       message = rockPaperScissors(nr);
     } else if (correct.charAt(0) == 'n') {
-      message = 'Oh okay then.';
+      message = 'Oh okay then. ( ͡° ʖ̯ ͡°)';
     } else {
       message = 'Make sure you enter "Yes" or "No" ';
     }
